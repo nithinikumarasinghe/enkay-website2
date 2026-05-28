@@ -13,7 +13,7 @@ export default function Footer() {
       {/* Main footer */}
       <div className="max-w-7xl mx-auto px-6 lg:px-12 py-8 flex flex-col md:flex-row md:items-center md:justify-between gap-10">
         {/* Brand */}
-        <div>
+        <div className="flex flex-col items-center md:items-start">
           <Image
             src="/logo-white.svg"
             alt="eNKay"
@@ -30,7 +30,7 @@ export default function Footer() {
         </div>
 
         {/* Navigation */}
-        <div className="flex items-center gap-8">
+        <div className="flex items-center justify-center md:justify-end gap-8">
           {nav.map((l) => (
             <a
               key={l.href}

@@ -9,7 +9,7 @@ export default function Hero() {
         src="/products/enkay_herobg.png"
         alt="eNKay — handmade luxury bags from Sri Lanka"
         fill
-        className="object-cover object-left"
+        className="object-cover object-[10%_30%] md:object-left"
         priority
         sizes="100vw"
       />
