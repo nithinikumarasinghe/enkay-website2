@@ -54,7 +54,7 @@ export default function FeaturedProducts() {
             className="text-4xl md:text-5xl text-onyx"
             style={{ fontFamily: 'var(--font-cormorant)' }}
           >
-            Hottest picks ✦
+            Hottest picks
           </h2>
         </div>
 
