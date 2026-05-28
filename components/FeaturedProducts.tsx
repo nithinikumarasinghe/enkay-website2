@@ -1,40 +1,42 @@
+import Image from 'next/image'
+
 const products = [
   {
-    name: 'The Celeste Clutch',
-    description: 'Hand-beaded evening clutch',
+    name: 'Aurelia Pearl Midi',
+    description: 'Pearl midi bag',
     status: 'Made to order',
-    bg: '#CBC0B2',
+    image: '/products/aurelia-pearl-midi.png',
+    imageAlt: 'Aurelia Pearl Midi — ivory hand-beaded bag',
   },
   {
-    name: 'The Garnet Orb',
-    description: 'Sculptural beaded shoulder bag',
+    name: 'Celeste Clutch',
+    description: 'Hand-beaded clutch',
     status: 'In stock',
-    bg: '#E8E0D8',
+    image: '/products/celeste-clutch.png',
+    imageAlt: 'Celeste Clutch — blue crystal beaded clutch',
   },
   {
-    name: 'The Velvet Luxe',
-    description: 'Statement clutch — burgundy beads',
+    name: 'Garnet Orb',
+    description: 'Sculptural round bag',
     status: 'In stock',
-    bg: '#D5CCC5',
+    image: '/products/garnet-orb.jpg',
+    imageAlt: 'Garnet Orb — deep burgundy circular beaded bag',
   },
   {
-    name: 'The Ivory Edit',
-    description: 'Structured beaded top-handle',
+    name: 'Sparkle Mini — Ember',
+    description: 'Mini top-handle bag',
+    status: 'In stock',
+    image: '/products/sparkle-mini-ember.jpg',
+    imageAlt: 'Sparkle Mini Ember — orange iridescent beaded bag',
+  },
+  {
+    name: 'Vellure Box Bag',
+    description: 'Statement box bag',
     status: 'Made to order',
-    bg: '#EDE8E3',
+    image: '/products/vellure-box-bag.jpg',
+    imageAlt: 'Vellure Box Bag — red and black geometric beaded bag',
   },
 ]
-
-function BagIcon() {
-  return (
-    <svg width="80" height="80" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect x="14" y="42" width="72" height="48" rx="3" stroke="#7E6961" strokeWidth="1.5"/>
-      <path d="M 34 42 Q 34 21 50 21 Q 66 21 66 42" stroke="#7E6961" strokeWidth="1.5" fill="none"/>
-      <circle cx="50" cy="42" r="4.5" stroke="#7E6961" strokeWidth="1.2" fill="none"/>
-      <line x1="14" y1="60" x2="86" y2="60" stroke="#7E6961" strokeWidth="0.8" strokeDasharray="4 3"/>
-    </svg>
-  )
-}
 
 export default function FeaturedProducts() {
   return (
@@ -56,30 +58,30 @@ export default function FeaturedProducts() {
           </h2>
         </div>
 
-        {/* Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {/* Grid — 2 cols on tablet, 5 on desktop */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
           {products.map((product) => (
-            <div
-              key={product.name}
-              className="group cursor-pointer"
-            >
-              {/* Image area */}
-              <div
-                className="aspect-square flex items-center justify-center mb-4 transition-transform duration-500 group-hover:scale-[1.02]"
-                style={{ backgroundColor: product.bg }}
-              >
-                <BagIcon />
+            <div key={product.name} className="group cursor-pointer">
+              {/* Image */}
+              <div className="aspect-[3/4] relative overflow-hidden mb-4 bg-taupe/30">
+                <Image
+                  src={product.image}
+                  alt={product.imageAlt}
+                  fill
+                  className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 20vw"
+                />
               </div>
 
               {/* Info */}
               <p
-                className="text-[11px] tracking-[0.08em] uppercase text-stone mb-1"
+                className="text-[10px] tracking-[0.15em] uppercase text-stone mb-1"
                 style={{ fontFamily: 'var(--font-montserrat)' }}
               >
                 {product.description}
               </p>
               <h3
-                className="text-xl text-onyx mb-1"
+                className="text-lg text-onyx mb-1"
                 style={{ fontFamily: 'var(--font-cormorant)' }}
               >
                 {product.name}

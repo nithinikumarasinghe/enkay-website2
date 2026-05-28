@@ -1,35 +1,20 @@
+import Image from 'next/image'
+
 export default function Hero() {
   return (
     <section id="home" className="relative min-h-[88vh] flex">
-      {/* Left — image area */}
-      <div className="hidden md:flex w-[58%] bg-taupe items-center justify-center relative overflow-hidden">
-        {/* Placeholder until product photos are ready */}
-        <div className="flex flex-col items-center gap-6 opacity-30">
-          <svg width="120" height="120" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="15" y="42" width="70" height="48" rx="3" stroke="#1F1F1F" strokeWidth="1.5"/>
-            <path d="M 35 42 Q 35 22 50 22 Q 65 22 65 42" stroke="#1F1F1F" strokeWidth="1.5" fill="none"/>
-            <circle cx="50" cy="42" r="4" stroke="#1F1F1F" strokeWidth="1.2" fill="none"/>
-            <line x1="15" y1="58" x2="85" y2="58" stroke="#1F1F1F" strokeWidth="0.8" strokeDasharray="4 3"/>
-          </svg>
-          <p
-            className="text-[10px] tracking-[0.3em] uppercase text-onyx"
-            style={{ fontFamily: 'var(--font-montserrat)' }}
-          >
-            Product photography coming soon
-          </p>
-        </div>
-        {/* Subtle NK watermark */}
-        <div
-          className="absolute inset-0 flex items-center justify-center pointer-events-none select-none"
-          aria-hidden="true"
-        >
-          <span
-            className="text-[28vw] font-bold text-onyx/[0.04] leading-none"
-            style={{ fontFamily: 'var(--font-cormorant)' }}
-          >
-            NK
-          </span>
-        </div>
+      {/* Left — hero image */}
+      <div className="hidden md:block w-[58%] relative overflow-hidden">
+        <Image
+          src="/products/garnet-orb.jpg"
+          alt="eNKay Garnet Orb — hand-beaded luxury bag"
+          fill
+          className="object-cover object-center"
+          priority
+          sizes="58vw"
+        />
+        {/* Subtle overlay so text on right reads cleanly */}
+        <div className="absolute inset-0 bg-onyx/5" />
       </div>
 
       {/* Right — text content */}
@@ -57,8 +42,8 @@ export default function Hero() {
             className="text-[13px] leading-relaxed text-stone mb-10 max-w-xs"
             style={{ fontFamily: 'var(--font-montserrat)' }}
           >
-            Your bags aren&apos;t just accessories — they&apos;re integral parts of your statement, every journey.
-            Hand-placed, one bead at a time.
+            Your bags aren&apos;t just accessories — they&apos;re integral parts of your statement,
+            every journey. Hand-placed, one bead at a time.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4">
@@ -78,6 +63,18 @@ export default function Hero() {
             </a>
           </div>
         </div>
+      </div>
+
+      {/* Mobile — show image below fold as background strip */}
+      <div className="md:hidden absolute inset-0 -z-10">
+        <Image
+          src="/products/garnet-orb.jpg"
+          alt="eNKay Garnet Orb"
+          fill
+          className="object-cover object-center opacity-10"
+          priority
+          sizes="100vw"
+        />
       </div>
     </section>
   )
