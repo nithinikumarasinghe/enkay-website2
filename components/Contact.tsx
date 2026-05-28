@@ -15,7 +15,7 @@ export default function Contact() {
         <div className="max-w-2xl mx-auto text-center mb-14">
           <p
             className="text-[10px] tracking-[0.3em] uppercase text-stone mb-4"
-            style={{ fontFamily: 'var(--font-montserrat)' }}
+            style={{ fontFamily: 'var(--font-montserrat)', fontWeight: 700 }}
           >
             Reach out
           </p>
@@ -27,9 +27,9 @@ export default function Contact() {
           </h2>
           <p
             className="text-[13px] text-stone mt-5 leading-relaxed"
-            style={{ fontFamily: 'var(--font-montserrat)' }}
+            style={{ fontFamily: 'var(--font-montserrat)', fontWeight: 400 }}
           >
-            Every eNKay customer can reach the founder directly. We&apos;re small. We&apos;re personal. That&apos;s not a weakness — it&apos;s the point.
+            Every eNKay customer can reach the founder directly. We&apos;re small. We&apos;re personal. That&apos;s not a weakness. It&apos;s the point.
           </p>
         </div>
 
@@ -57,7 +57,7 @@ export default function Contact() {
               <div>
                 <label
                   className="block text-[10px] tracking-[0.2em] uppercase text-stone mb-2"
-                  style={{ fontFamily: 'var(--font-montserrat)' }}
+                  style={{ fontFamily: 'var(--font-montserrat)', fontWeight: 700 }}
                 >
                   Name
                 </label>
@@ -65,14 +65,14 @@ export default function Contact() {
                   type="text"
                   required
                   placeholder="Your name"
-                  className="w-full border-b border-taupe bg-transparent py-3 text-[13px] text-onyx placeholder:text-stone/50 outline-none focus:border-burgundy transition-colors"
+                  className="w-full border-b border-taupe bg-transparent py-3 text-[13px] text-onyx placeholder:text-stone/70 outline-none focus:border-burgundy transition-colors"
                   style={{ fontFamily: 'var(--font-montserrat)' }}
                 />
               </div>
               <div>
                 <label
                   className="block text-[10px] tracking-[0.2em] uppercase text-stone mb-2"
-                  style={{ fontFamily: 'var(--font-montserrat)' }}
+                  style={{ fontFamily: 'var(--font-montserrat)', fontWeight: 700 }}
                 >
                   Email
                 </label>
@@ -80,7 +80,7 @@ export default function Contact() {
                   type="email"
                   required
                   placeholder="Your email"
-                  className="w-full border-b border-taupe bg-transparent py-3 text-[13px] text-onyx placeholder:text-stone/50 outline-none focus:border-burgundy transition-colors"
+                  className="w-full border-b border-taupe bg-transparent py-3 text-[13px] text-onyx placeholder:text-stone/70 outline-none focus:border-burgundy transition-colors"
                   style={{ fontFamily: 'var(--font-montserrat)' }}
                 />
               </div>
@@ -89,15 +89,15 @@ export default function Contact() {
             <div>
               <label
                 className="block text-[10px] tracking-[0.2em] uppercase text-stone mb-2"
-                style={{ fontFamily: 'var(--font-montserrat)' }}
+                style={{ fontFamily: 'var(--font-montserrat)', fontWeight: 700 }}
               >
                 Message
               </label>
               <textarea
                 required
                 rows={4}
-                placeholder="Tell me what you're looking for — a specific piece, a custom order, or just a question."
-                className="w-full border-b border-taupe bg-transparent py-3 text-[13px] text-onyx placeholder:text-stone/50 outline-none focus:border-burgundy transition-colors resize-none"
+                placeholder="Tell me what you're looking for: a specific piece, a custom order, or just a question."
+                className="w-full border-b border-taupe bg-transparent py-3 text-[13px] text-onyx placeholder:text-stone/70 outline-none focus:border-burgundy transition-colors resize-none"
                 style={{ fontFamily: 'var(--font-montserrat)' }}
               />
             </div>
@@ -105,8 +105,8 @@ export default function Contact() {
             <div className="pt-4">
               <button
                 type="submit"
-                className="bg-burgundy text-white text-[10px] tracking-[0.25em] uppercase px-10 py-4 hover:bg-burgundy/90 transition-colors w-full sm:w-auto"
-                style={{ fontFamily: 'var(--font-montserrat)' }}
+                className="bg-burgundy text-white text-[11px] tracking-[0.2em] uppercase px-10 py-4 hover:bg-burgundy/90 transition-colors w-full sm:w-auto"
+                style={{ fontFamily: 'var(--font-montserrat)', fontWeight: 700 }}
               >
                 Send Message
               </button>

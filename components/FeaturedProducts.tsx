@@ -46,7 +46,7 @@ export default function FeaturedProducts() {
         <div className="text-center mb-16">
           <p
             className="text-[10px] tracking-[0.3em] uppercase text-stone mb-4"
-            style={{ fontFamily: 'var(--font-montserrat)' }}
+            style={{ fontFamily: 'var(--font-montserrat)', fontWeight: 700 }}
           >
             The Collection
           </p>
@@ -76,7 +76,7 @@ export default function FeaturedProducts() {
               {/* Info */}
               <p
                 className="text-[10px] tracking-[0.15em] uppercase text-stone mb-1"
-                style={{ fontFamily: 'var(--font-montserrat)' }}
+                style={{ fontFamily: 'var(--font-montserrat)', fontWeight: 700 }}
               >
                 {product.description}
               </p>
@@ -88,7 +88,7 @@ export default function FeaturedProducts() {
               </h3>
               <span
                 className="text-[10px] tracking-wider uppercase text-stone"
-                style={{ fontFamily: 'var(--font-montserrat)' }}
+                style={{ fontFamily: 'var(--font-montserrat)', fontWeight: 600 }}
               >
                 {product.status}
               </span>
@@ -100,8 +100,8 @@ export default function FeaturedProducts() {
         <div className="text-center mt-14">
           <a
             href="#contact"
-            className="inline-block border border-onyx/30 text-onyx text-[10px] tracking-[0.25em] uppercase px-10 py-4 hover:bg-burgundy hover:text-white hover:border-burgundy transition-all"
-            style={{ fontFamily: 'var(--font-montserrat)' }}
+            className="inline-block border border-onyx/30 text-onyx text-[11px] tracking-[0.2em] uppercase px-10 py-4 hover:bg-burgundy hover:text-white hover:border-burgundy transition-all"
+            style={{ fontFamily: 'var(--font-montserrat)', fontWeight: 700 }}
           >
             Enquire About a Piece
           </a>

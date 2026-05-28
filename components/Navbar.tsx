@@ -31,8 +31,8 @@ export default function Navbar() {
           <Image
             src="/logo-black.svg"
             alt="eNKay"
-            width={90}
-            height={36}
+            width={120}
+            height={48}
             priority
           />
         </a>
@@ -43,7 +43,7 @@ export default function Navbar() {
             <a
               key={l.href}
               href={l.href}
-              className="text-[11px] tracking-[0.18em] uppercase text-onyx/70 hover:text-burgundy transition-colors"
+              className="text-[11px] tracking-[0.18em] uppercase font-bold text-onyx/70 hover:text-burgundy transition-colors"
               style={{ fontFamily: 'var(--font-montserrat)' }}
             >
               {l.label}
@@ -55,7 +55,7 @@ export default function Navbar() {
         <div className="hidden md:flex items-center">
           <a
             href="#shop"
-            className="text-[11px] tracking-[0.18em] uppercase text-onyx/70 hover:text-burgundy transition-colors"
+            className="text-[11px] tracking-[0.18em] uppercase font-bold text-onyx/70 hover:text-burgundy transition-colors"
             style={{ fontFamily: 'var(--font-montserrat)' }}
           >
             Shop Now
@@ -82,7 +82,7 @@ export default function Navbar() {
               key={l.href}
               href={l.href}
               onClick={() => setMenuOpen(false)}
-              className="text-[11px] tracking-[0.2em] uppercase text-onyx/70 hover:text-burgundy transition-colors"
+              className="text-[11px] tracking-[0.2em] uppercase font-bold text-onyx/70 hover:text-burgundy transition-colors"
               style={{ fontFamily: 'var(--font-montserrat)' }}
             >
               {l.label}

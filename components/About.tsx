@@ -7,7 +7,7 @@ export default function About() {
           <div>
             <p
               className="text-[10px] tracking-[0.3em] uppercase text-stone mb-6"
-              style={{ fontFamily: 'var(--font-montserrat)' }}
+              style={{ fontFamily: 'var(--font-montserrat)', fontWeight: 700 }}
             >
               Our Story
             </p>
@@ -22,31 +22,31 @@ export default function About() {
 
             <div
               className="space-y-5 text-[13px] leading-relaxed text-onyx/70 max-w-md"
-              style={{ fontFamily: 'var(--font-montserrat)' }}
+              style={{ fontFamily: 'var(--font-montserrat)', fontWeight: 400 }}
             >
               <p>
-                eNKay began the way most beautiful things do — by accident. A single TikTok video. Fifty hours of careful, often imperfect work. One bag.
+                eNKay began the way most beautiful things do, by accident. A single TikTok video. Fifty hours of careful, often imperfect work. One bag.
               </p>
               <p>
                 She shared it. The response surprised her. Strangers approached. Orders followed. That&apos;s when she looked at the market and realised something: bags like these were rare. The craft itself, even rarer.
               </p>
               <p>
-                Today, every eNKay piece carries that same DNA — made slowly, made with intention, made by someone who chose this craft because she loved it first.
+                Today, every eNKay piece carries that same DNA: made slowly, made with intention, made by someone who chose this craft because she loved it first.
               </p>
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4 mt-10">
               <a
                 href="#shop"
-                className="inline-block bg-burgundy text-white text-[10px] tracking-[0.25em] uppercase px-8 py-4 hover:bg-burgundy/90 transition-colors"
-                style={{ fontFamily: 'var(--font-montserrat)' }}
+                className="inline-block bg-burgundy text-white text-[11px] tracking-[0.2em] uppercase px-10 py-4 hover:bg-burgundy/90 transition-colors"
+                style={{ fontFamily: 'var(--font-montserrat)', fontWeight: 700 }}
               >
                 Shop the Collection
               </a>
               <a
                 href="#contact"
-                className="inline-block border border-onyx/30 text-onyx text-[10px] tracking-[0.25em] uppercase px-8 py-4 hover:border-onyx transition-colors"
-                style={{ fontFamily: 'var(--font-montserrat)' }}
+                className="inline-block border border-onyx/30 text-onyx text-[11px] tracking-[0.2em] uppercase px-10 py-4 hover:border-onyx transition-colors"
+                style={{ fontFamily: 'var(--font-montserrat)', fontWeight: 700 }}
               >
                 Get in Touch
               </a>
@@ -98,8 +98,8 @@ export default function About() {
                 {v.label}
               </h4>
               <p
-                className="text-[12px] text-stone leading-relaxed"
-                style={{ fontFamily: 'var(--font-montserrat)' }}
+                className="text-[13px] text-onyx/70 leading-relaxed"
+                style={{ fontFamily: 'var(--font-montserrat)', fontWeight: 400 }}
               >
                 {v.desc}
               </p>

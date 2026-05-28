@@ -17,8 +17,8 @@ export default function Footer() {
           <Image
             src="/logo-white.svg"
             alt="eNKay"
-            width={90}
-            height={36}
+            width={120}
+            height={48}
             className="mb-5"
           />
           <p
@@ -33,7 +33,7 @@ export default function Footer() {
         <div>
           <p
             className="text-[10px] tracking-[0.25em] uppercase text-white/40 mb-5"
-            style={{ fontFamily: 'var(--font-montserrat)' }}
+            style={{ fontFamily: 'var(--font-montserrat)', fontWeight: 700 }}
           >
             Navigation
           </p>
@@ -64,7 +64,7 @@ export default function Footer() {
           </p>
           <p
             className="text-[10px] tracking-[0.15em] uppercase text-white/30 mt-8"
-            style={{ fontFamily: 'var(--font-montserrat)' }}
+            style={{ fontFamily: 'var(--font-montserrat)', fontWeight: 700 }}
           >
             Sri Lanka
           </p>
