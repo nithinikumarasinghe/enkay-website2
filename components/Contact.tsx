@@ -4,8 +4,17 @@ import { useState } from 'react'
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false)
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
+    const form = e.currentTarget
+    const formData = new FormData(form)
+
+    await fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(formData as unknown as Record<string, string>).toString(),
+    })
+
     setSubmitted(true)
   }
 
@@ -29,7 +38,7 @@ export default function Contact() {
             className="text-[13px] text-stone mt-5 leading-relaxed"
             style={{ fontFamily: 'var(--font-montserrat)', fontWeight: 400 }}
           >
-            Every eNKay customer can reach the founder directly. We&apos;re small. We&apos;re personal. That&apos;s not a weakness. It&apos;s the point.
+            Every bag is handmade, which means every order can be personal. Tell us what you&apos;re looking for. We&apos;ll tell you what&apos;s possible. It usually starts with one message.
           </p>
         </div>
 
@@ -50,9 +59,14 @@ export default function Contact() {
           </div>
         ) : (
           <form
+            name="contact"
+            method="POST"
+            data-netlify="true"
             onSubmit={handleSubmit}
             className="max-w-xl mx-auto space-y-6"
           >
+            <input type="hidden" name="form-name" value="contact" />
+
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <div>
                 <label
@@ -63,6 +77,7 @@ export default function Contact() {
                 </label>
                 <input
                   type="text"
+                  name="name"
                   required
                   placeholder="Your name"
                   className="w-full border-b border-taupe bg-transparent py-3 text-[13px] text-onyx placeholder:text-stone/70 outline-none focus:border-burgundy transition-colors"
@@ -78,6 +93,7 @@ export default function Contact() {
                 </label>
                 <input
                   type="email"
+                  name="email"
                   required
                   placeholder="Your email"
                   className="w-full border-b border-taupe bg-transparent py-3 text-[13px] text-onyx placeholder:text-stone/70 outline-none focus:border-burgundy transition-colors"
@@ -94,6 +110,7 @@ export default function Contact() {
                 Message
               </label>
               <textarea
+                name="message"
                 required
                 rows={4}
                 placeholder="Tell me what you're looking for: a specific piece, a custom order, or just a question."

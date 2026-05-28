@@ -19,21 +19,21 @@ const products = [
     name: 'Garnet Orb',
     description: 'Sculptural round bag',
     status: 'In stock',
-    image: '/products/garnet-orb.jpg',
+    image: '/products/garnet-orb.png',
     imageAlt: 'Garnet Orb — deep burgundy circular beaded bag',
   },
   {
     name: 'Sparkle Mini — Ember',
     description: 'Mini top-handle bag',
     status: 'In stock',
-    image: '/products/sparkle-mini-ember.jpg',
+    image: '/products/sparkle-mini-ember.png',
     imageAlt: 'Sparkle Mini Ember — orange iridescent beaded bag',
   },
   {
     name: 'Vellure Box Bag',
     description: 'Statement box bag',
     status: 'Made to order',
-    image: '/products/vellure-box-bag.jpg',
+    image: '/products/vellure-box-bag.png',
     imageAlt: 'Vellure Box Bag — red and black geometric beaded bag',
   },
 ]
@@ -99,7 +99,9 @@ export default function FeaturedProducts() {
         {/* CTA */}
         <div className="text-center mt-14">
           <a
-            href="#contact"
+            href="https://wa.me/94777580784?text=Hi%2C%20I%27d%20like%20to%20enquire%20about%20a%20piece%20from%20eNKay."
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-block border border-onyx/30 text-onyx text-[11px] tracking-[0.2em] uppercase px-10 py-4 hover:bg-burgundy hover:text-white hover:border-burgundy transition-all"
             style={{ fontFamily: 'var(--font-montserrat)', fontWeight: 700 }}
           >

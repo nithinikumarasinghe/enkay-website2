@@ -37,7 +37,9 @@ export default function About() {
 
             <div className="flex flex-col sm:flex-row gap-4 mt-10">
               <a
-                href="#shop"
+                href="https://wa.me/c/94777580784"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-block bg-burgundy text-white text-[11px] tracking-[0.2em] uppercase px-10 py-4 hover:bg-burgundy/90 transition-colors"
                 style={{ fontFamily: 'var(--font-montserrat)', fontWeight: 700 }}
               >
@@ -53,33 +55,13 @@ export default function About() {
             </div>
           </div>
 
-          {/* Image placeholder */}
-          <div className="flex justify-center">
-            <div
-              className="w-80 h-80 rounded-full bg-taupe flex items-center justify-center relative overflow-hidden"
-            >
-              {/* Placeholder for lifestyle photo */}
-              <div className="text-center opacity-30">
-                <svg width="64" height="64" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="50" cy="35" r="18" stroke="#1F1F1F" strokeWidth="1.5"/>
-                  <path d="M 15 85 Q 15 62 50 62 Q 85 62 85 85" stroke="#1F1F1F" strokeWidth="1.5" fill="none"/>
-                </svg>
-                <p
-                  className="text-[9px] tracking-widest uppercase text-onyx mt-3"
-                  style={{ fontFamily: 'var(--font-montserrat)' }}
-                >
-                  Founder photo
-                </p>
-              </div>
-              {/* Subtle watermark */}
-              <span
-                className="absolute text-[12rem] font-bold text-onyx/[0.04] leading-none select-none pointer-events-none"
-                style={{ fontFamily: 'var(--font-cormorant)' }}
-                aria-hidden="true"
-              >
-                e
-              </span>
-            </div>
+          {/* Founder photo */}
+          <div className="w-full max-w-sm mx-auto aspect-[3/4] overflow-hidden rounded-sm relative">
+            <img
+              src="/founder.jpg"
+              alt="eNKay founder"
+              className="w-full h-full object-cover object-[center_20%] scale-110"
+            />
           </div>
         </div>
 
