@@ -6,7 +6,6 @@ const links = [
   { label: 'Home', href: '#home' },
   { label: 'Shop', href: '#shop' },
   { label: 'About', href: '#about' },
-  { label: 'Contact', href: '#contact' },
 ]
 
 export default function Navbar() {
@@ -54,11 +53,11 @@ export default function Navbar() {
         {/* Right side */}
         <div className="hidden md:flex items-center">
           <a
-            href="#shop"
+            href="#contact"
             className="text-[11px] tracking-[0.18em] uppercase font-bold text-onyx/70 hover:text-burgundy transition-colors"
             style={{ fontFamily: 'var(--font-montserrat)' }}
           >
-            Shop Now
+            Contact
           </a>
         </div>
 
