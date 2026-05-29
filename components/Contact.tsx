@@ -1,10 +1,18 @@
 'use client'
 import { useState, useEffect } from 'react'
 
+type Errors = {
+  name?: string
+  email?: string
+  mobile?: string
+  message?: string
+}
+
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false)
   const [enquiryBag, setEnquiryBag] = useState('')
   const [message, setMessage] = useState('')
+  const [errors, setErrors] = useState<Errors>({})
 
   useEffect(() => {
     const handler = (e: Event) => {
@@ -18,11 +26,31 @@ export default function Contact() {
     return () => window.removeEventListener('enquire-bag', handler)
   }, [])
 
+  function validate(data: FormData): Errors {
+    const errs: Errors = {}
+    if (!data.get('name')?.toString().trim()) errs.name = 'Please enter your name.'
+    const email = data.get('email')?.toString().trim() ?? ''
+    if (!email) errs.email = 'Please enter your email.'
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) errs.email = 'Please enter a valid email address.'
+    const mobile = data.get('mobile')?.toString().trim() ?? ''
+    if (!mobile) errs.mobile = 'Please enter your mobile number.'
+    else if (!/^\+?[\d\s\-()]{7,}$/.test(mobile)) errs.mobile = 'Please enter a valid mobile number.'
+    if (!data.get('message')?.toString().trim()) errs.message = 'Please enter a message.'
+    return errs
+  }
+
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
     const form = e.currentTarget
     const formData = new FormData(form)
 
+    const errs = validate(formData)
+    if (Object.keys(errs).length > 0) {
+      setErrors(errs)
+      return
+    }
+
+    setErrors({})
     await fetch('/__forms.html', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -33,6 +61,11 @@ export default function Contact() {
     setEnquiryBag('')
     setMessage('')
   }
+
+  const inputClass = (field: keyof Errors) =>
+    `w-full border-b bg-transparent py-3 text-[13px] text-onyx placeholder:text-stone/70 outline-none transition-colors ${
+      errors[field] ? 'border-red-400' : 'border-taupe focus:border-burgundy'
+    }`
 
   return (
     <section id="contact" className="py-24 bg-cream">
@@ -113,11 +146,16 @@ export default function Contact() {
                 <input
                   type="text"
                   name="name"
-                  required
                   placeholder="Your name"
-                  className="w-full border-b border-taupe bg-transparent py-3 text-[13px] text-onyx placeholder:text-stone/70 outline-none focus:border-burgundy transition-colors"
+                  onChange={() => setErrors((p) => ({ ...p, name: undefined }))}
+                  className={inputClass('name')}
                   style={{ fontFamily: 'var(--font-montserrat)' }}
                 />
+                {errors.name && (
+                  <p className="text-[11px] text-red-400 mt-1" style={{ fontFamily: 'var(--font-montserrat)' }}>
+                    {errors.name}
+                  </p>
+                )}
               </div>
               <div>
                 <label
@@ -129,11 +167,16 @@ export default function Contact() {
                 <input
                   type="email"
                   name="email"
-                  required
                   placeholder="Your email"
-                  className="w-full border-b border-taupe bg-transparent py-3 text-[13px] text-onyx placeholder:text-stone/70 outline-none focus:border-burgundy transition-colors"
+                  onChange={() => setErrors((p) => ({ ...p, email: undefined }))}
+                  className={inputClass('email')}
                   style={{ fontFamily: 'var(--font-montserrat)' }}
                 />
+                {errors.email && (
+                  <p className="text-[11px] text-red-400 mt-1" style={{ fontFamily: 'var(--font-montserrat)' }}>
+                    {errors.email}
+                  </p>
+                )}
               </div>
             </div>
 
@@ -144,13 +187,38 @@ export default function Contact() {
               >
                 Mobile Number
               </label>
-              <input
-                type="tel"
-                name="mobile"
-                placeholder="Your mobile number"
-                className="w-full border-b border-taupe bg-transparent py-3 text-[13px] text-onyx placeholder:text-stone/70 outline-none focus:border-burgundy transition-colors"
-                style={{ fontFamily: 'var(--font-montserrat)' }}
-              />
+              <div className="flex gap-3">
+                <select
+                  name="country_code"
+                  defaultValue="+94"
+                  className="border-b border-taupe bg-transparent py-3 text-[13px] text-onyx outline-none focus:border-burgundy transition-colors w-28"
+                  style={{ fontFamily: 'var(--font-montserrat)' }}
+                >
+                  <option value="+94">🇱🇰 +94</option>
+                  <option value="+1">🇺🇸 +1</option>
+                  <option value="+44">🇬🇧 +44</option>
+                  <option value="+61">🇦🇺 +61</option>
+                  <option value="+91">🇮🇳 +91</option>
+                  <option value="+971">🇦🇪 +971</option>
+                  <option value="+65">🇸🇬 +65</option>
+                  <option value="+60">🇲🇾 +60</option>
+                  <option value="+33">🇫🇷 +33</option>
+                  <option value="+49">🇩🇪 +49</option>
+                </select>
+                <input
+                  type="tel"
+                  name="mobile"
+                  placeholder="Your mobile number"
+                  onChange={() => setErrors((p) => ({ ...p, mobile: undefined }))}
+                  className={`flex-1 ${inputClass('mobile')}`}
+                  style={{ fontFamily: 'var(--font-montserrat)' }}
+                />
+              </div>
+              {errors.mobile && (
+                <p className="text-[11px] text-red-400 mt-1" style={{ fontFamily: 'var(--font-montserrat)' }}>
+                  {errors.mobile}
+                </p>
+              )}
             </div>
 
             <div>
@@ -162,14 +230,18 @@ export default function Contact() {
               </label>
               <textarea
                 name="message"
-                required
                 rows={4}
                 value={message}
-                onChange={(e) => setMessage(e.target.value)}
+                onChange={(e) => { setMessage(e.target.value); setErrors((p) => ({ ...p, message: undefined })) }}
                 placeholder="Tell me what you're looking for: a specific piece, a custom order, or just a question."
-                className="w-full border-b border-taupe bg-transparent py-3 text-[13px] text-onyx placeholder:text-stone/70 outline-none focus:border-burgundy transition-colors resize-none"
+                className={`${inputClass('message')} resize-none`}
                 style={{ fontFamily: 'var(--font-montserrat)' }}
               />
+              {errors.message && (
+                <p className="text-[11px] text-red-400 mt-1" style={{ fontFamily: 'var(--font-montserrat)' }}>
+                  {errors.message}
+                </p>
+              )}
             </div>
 
             <div className="pt-4">
