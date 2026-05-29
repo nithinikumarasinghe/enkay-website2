@@ -1,8 +1,22 @@
 'use client'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false)
+  const [enquiryBag, setEnquiryBag] = useState('')
+  const [message, setMessage] = useState('')
+
+  useEffect(() => {
+    const handler = (e: Event) => {
+      const bagName = (e as CustomEvent).detail?.name
+      if (bagName) {
+        setEnquiryBag(bagName)
+        setMessage(`Hi, I'd like to enquire about the ${bagName}.`)
+      }
+    }
+    window.addEventListener('enquire-bag', handler)
+    return () => window.removeEventListener('enquire-bag', handler)
+  }, [])
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
@@ -16,6 +30,8 @@ export default function Contact() {
     })
 
     setSubmitted(true)
+    setEnquiryBag('')
+    setMessage('')
   }
 
   return (
@@ -67,6 +83,25 @@ export default function Contact() {
           >
             <input type="hidden" name="form-name" value="contact" />
 
+            {/* Bag indicator */}
+            {enquiryBag && (
+              <div className="flex items-center justify-between bg-burgundy/10 border border-burgundy/20 px-4 py-3">
+                <p
+                  className="text-[11px] tracking-[0.15em] uppercase text-burgundy"
+                  style={{ fontFamily: 'var(--font-montserrat)', fontWeight: 700 }}
+                >
+                  Enquiring about: {enquiryBag}
+                </p>
+                <button
+                  type="button"
+                  onClick={() => { setEnquiryBag(''); setMessage('') }}
+                  className="text-burgundy/60 hover:text-burgundy text-sm ml-4"
+                >
+                  ✕
+                </button>
+              </div>
+            )}
+
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <div>
                 <label
@@ -107,12 +142,30 @@ export default function Contact() {
                 className="block text-[10px] tracking-[0.2em] uppercase text-stone mb-2"
                 style={{ fontFamily: 'var(--font-montserrat)', fontWeight: 700 }}
               >
+                Mobile Number
+              </label>
+              <input
+                type="tel"
+                name="mobile"
+                placeholder="Your mobile number"
+                className="w-full border-b border-taupe bg-transparent py-3 text-[13px] text-onyx placeholder:text-stone/70 outline-none focus:border-burgundy transition-colors"
+                style={{ fontFamily: 'var(--font-montserrat)' }}
+              />
+            </div>
+
+            <div>
+              <label
+                className="block text-[10px] tracking-[0.2em] uppercase text-stone mb-2"
+                style={{ fontFamily: 'var(--font-montserrat)', fontWeight: 700 }}
+              >
                 Message
               </label>
               <textarea
                 name="message"
                 required
                 rows={4}
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
                 placeholder="Tell me what you're looking for: a specific piece, a custom order, or just a question."
                 className="w-full border-b border-taupe bg-transparent py-3 text-[13px] text-onyx placeholder:text-stone/70 outline-none focus:border-burgundy transition-colors resize-none"
                 style={{ fontFamily: 'var(--font-montserrat)' }}

@@ -25,13 +25,16 @@ export default function About() {
               style={{ fontFamily: 'var(--font-montserrat)', fontWeight: 400 }}
             >
               <p>
-                eNKay began the way most beautiful things do, by accident. A single TikTok video. Fifty hours of careful, often imperfect work. One bag.
+                eNKay began the way most beautiful things do, by accident. A video. Fifty hours of careful, often imperfect work. One bag.
               </p>
               <p>
-                She shared it. The response surprised her. Strangers approached. Orders followed. That&apos;s when she looked at the market and realised something: bags like these were rare. The craft itself, even rarer.
+                She shared it. Strangers approached. Orders followed.
               </p>
               <p>
-                Today, every eNKay piece carries that same DNA: made slowly, made with intention, made by someone who chose this craft because she loved it first.
+                But the name was always personal. eNKay comes from NK, the initials of Nithini Kumarasinghe, the hands behind every piece. A quiet signature. The same one pressed into every bag that leaves this studio.
+              </p>
+              <p>
+                That&apos;s the point of eNKay. Not a factory. Not a label. A name and the craft that carries it.
               </p>
             </div>
 

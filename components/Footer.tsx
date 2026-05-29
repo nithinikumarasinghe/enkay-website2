@@ -22,7 +22,7 @@ export default function Footer() {
             className="mb-0"
           />
           <p
-            className="text-2xl text-white/80 italic leading-snug -mt-4"
+            className="text-2xl text-white/80 italic leading-snug -mt-12"
             style={{ fontFamily: 'var(--font-cormorant)' }}
           >
             Where craft meets style.
