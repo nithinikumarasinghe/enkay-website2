@@ -11,6 +11,7 @@ export default function Hero() {
         fill
         className="object-cover object-[10%_30%] md:object-left"
         priority
+        quality={90}
         sizes="100vw"
       />
 
