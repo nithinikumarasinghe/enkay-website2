@@ -60,6 +60,12 @@ export default function Footer() {
           >
             Made by hand. Made with intention. ✦
           </p>
+          <p
+            className="text-[10px] text-white/30 tracking-wider"
+            style={{ fontFamily: 'var(--font-montserrat)' }}
+          >
+            Website by Netronk Innovation
+          </p>
         </div>
       </div>
     </footer>
