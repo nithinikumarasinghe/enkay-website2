@@ -6,7 +6,7 @@ export default function Hero() {
 
       {/* Full-width background photo — person on left side */}
       <Image
-        src="/products/enkay_herobg.png"
+        src="/products/enkay_herobgblack.png"
         alt="eNKay — handmade luxury bags from Sri Lanka"
         fill
         className="object-cover object-[10%_30%] md:object-left"
