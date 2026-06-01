@@ -62,7 +62,7 @@ export default function About() {
           <div className="w-full max-w-sm mx-auto aspect-[3/4] overflow-hidden rounded-sm relative">
             <img
               src="/founder.jpg"
-              alt="eNKay founder"
+              alt="Nithini Kumarasinghe, founder of eNKay handmade beaded handbags from Sri Lanka"
               className="w-full h-full object-cover object-[center_20%] scale-110"
             />
           </div>

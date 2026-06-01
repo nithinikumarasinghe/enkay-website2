@@ -18,12 +18,48 @@ const montserrat = Montserrat({
 })
 
 export const metadata: Metadata = {
-  title: 'eNKay — Where craft meets style',
+  title: 'eNKay | Handmade Luxury Beaded Handbags from Sri Lanka',
   description:
-    'Handmade luxury handbags, born in Sri Lanka. Every piece made entirely by hand, one bead at a time.',
-  keywords: ['handmade handbags', 'luxury bags', 'beaded bags', 'Sri Lanka', 'artisan bags'],
+    'Shop one-of-a-kind handmade beaded handbags from Sri Lanka. Each luxury beaded clutch & bag is crafted entirely by hand. Made to order & in stock.',
+  keywords: [
+    'handmade beaded bags',
+    'luxury beaded handbags Sri Lanka',
+    'one of a kind beaded clutch',
+    'handmade luxury handbags',
+    'beaded bags Sri Lanka',
+    'artisan handbags',
+    'made to order bags',
+    'beaded clutch bag',
+  ],
   verification: {
     google: 'LbzCCAlbooY3nIkNuwoVnZ79WhXLaRHBNClkIcX3T6A',
+  },
+  openGraph: {
+    title: 'eNKay | Handmade Luxury Beaded Handbags from Sri Lanka',
+    description:
+      'Shop one-of-a-kind handmade beaded handbags from Sri Lanka. Each luxury beaded clutch & bag is crafted entirely by hand. Made to order & in stock.',
+    url: 'https://enkaybags.com',
+    siteName: 'eNKay',
+    images: [
+      {
+        url: 'https://enkaybags.com/products/enkay_herobgblack.png',
+        width: 1200,
+        height: 630,
+        alt: 'eNKay — Handmade Luxury Beaded Handbags from Sri Lanka',
+      },
+    ],
+    type: 'website',
+    locale: 'en_US',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'eNKay | Handmade Luxury Beaded Handbags from Sri Lanka',
+    description:
+      'Shop one-of-a-kind handmade beaded handbags from Sri Lanka. Each luxury beaded clutch & bag is crafted entirely by hand.',
+    images: ['https://enkaybags.com/products/enkay_herobgblack.png'],
+  },
+  alternates: {
+    canonical: 'https://enkaybags.com',
   },
 }
 
