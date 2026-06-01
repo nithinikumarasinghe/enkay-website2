@@ -22,6 +22,9 @@ export const metadata: Metadata = {
   description:
     'Handmade luxury handbags, born in Sri Lanka. Every piece made entirely by hand, one bead at a time.',
   keywords: ['handmade handbags', 'luxury bags', 'beaded bags', 'Sri Lanka', 'artisan bags'],
+  verification: {
+    google: 'LbzCCAlbooY3nIkNuwoVnZ79WhXLaRHBNClkIcX3T6A',
+  },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
