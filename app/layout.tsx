@@ -38,7 +38,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'eNKay | Handmade Luxury Beaded Handbags from Sri Lanka',
     description:
-      'Shop one-of-a-kind handmade beaded handbags from Sri Lanka. Each luxury beaded clutch & bag is crafted entirely by hand. Made to order & in stock.',
+      'Every piece handmade, one bead at a time. No factory shortcuts. No two exactly alike. Born in Sri Lanka. Made for the woman with refined, unique taste.',
     url: 'https://enkaybags.com',
     siteName: 'eNKay',
     images: [
