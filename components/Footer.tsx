@@ -1,3 +1,4 @@
+'use client'
 import Image from 'next/image'
 import { FaInstagram, FaTiktok, FaFacebook, FaYoutube, FaWhatsapp } from 'react-icons/fa'
 
@@ -15,6 +16,14 @@ const socials = [
   { icon: FaYoutube, href: 'https://youtube.com/@enkay_official?si=dSQKUiGDv81lFURg', label: 'YouTube' },
   { icon: FaWhatsapp, href: 'https://wa.me/94777580784', label: 'WhatsApp' },
 ]
+
+function fireWhatsAppEvent() {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  ;(window as any).gtag?.('event', 'whatsapp_click', {
+    event_category: 'contact',
+    event_label: 'whatsapp_button',
+  })
+}
 
 export default function Footer() {
   return (
@@ -61,6 +70,7 @@ export default function Footer() {
                 rel="noopener noreferrer"
                 aria-label={label}
                 className="text-white/60 hover:text-white transition-colors p-2"
+                onClick={label === 'WhatsApp' ? fireWhatsAppEvent : undefined}
               >
                 <Icon size={20} />
               </a>

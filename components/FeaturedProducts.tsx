@@ -121,6 +121,7 @@ export default function FeaturedProducts() {
               href="https://wa.me/94777580784?text=Hi%2C%20I%27d%20like%20to%20enquire%20about%20a%20piece%20from%20eNKay."
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => (window as any).gtag?.('event', 'whatsapp_click', { event_category: 'contact', event_label: 'whatsapp_button' })} // eslint-disable-line @typescript-eslint/no-explicit-any
               className="inline-block border border-onyx/30 text-onyx text-[11px] tracking-[0.2em] uppercase px-10 py-4 hover:bg-burgundy hover:text-white hover:border-burgundy transition-all"
               style={{ fontFamily: 'var(--font-montserrat)', fontWeight: 700 }}
             >

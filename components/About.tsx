@@ -1,3 +1,13 @@
+'use client'
+
+function fireWhatsAppEvent() {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  ;(window as any).gtag?.('event', 'whatsapp_click', {
+    event_category: 'contact',
+    event_label: 'whatsapp_button',
+  })
+}
+
 export default function About() {
   return (
     <section id="about" className="py-24 bg-taupe/30">
@@ -43,6 +53,7 @@ export default function About() {
                 href="https://wa.me/c/94777580784"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={fireWhatsAppEvent}
                 className="inline-block bg-burgundy text-white text-[11px] tracking-[0.2em] uppercase px-10 py-4 hover:bg-burgundy/90 transition-colors"
                 style={{ fontFamily: 'var(--font-montserrat)', fontWeight: 700 }}
               >
