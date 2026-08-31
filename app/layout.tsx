@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Cormorant_Garamond, Montserrat } from 'next/font/google'
 import Script from 'next/script'
+import EnquiryBasket from '@/components/EnquiryBasket'
 import './globals.css'
 
 const cormorant = Cormorant_Garamond({
@@ -88,6 +89,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* Google Tag Manager (noscript) */}
         <noscript dangerouslySetInnerHTML={{ __html: `<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TP6659LQ" height="0" width="0" style="display:none;visibility:hidden"></iframe>` }} />
         {children}
+        <EnquiryBasket />
       </body>
     </html>
   )
