@@ -5,6 +5,7 @@ import FeaturedProducts from '@/components/FeaturedProducts'
 import About from '@/components/About'
 import Contact from '@/components/Contact'
 import Footer from '@/components/Footer'
+import EnquiryBasket from '@/components/EnquiryBasket'
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
         <Contact />
       </main>
       <Footer />
+      <EnquiryBasket />
     </>
   )
 }

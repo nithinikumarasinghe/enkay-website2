@@ -20,23 +20,23 @@ type Errors = {
 }
 
 export default function Contact() {
-  const [submitted, setSubmitted]     = useState(false)
-  const [enquiryBag, setEnquiryBag]   = useState('')
-  const [message, setMessage]         = useState('')
-  const [errors, setErrors]           = useState<Errors>({})
-  const [countryCode, setCountryCode] = useState('+94')
-  const [country, setCountry]         = useState('')
+  const [submitted, setSubmitted]       = useState(false)
+  const [enquiryItems, setEnquiryItems] = useState<string[]>([])
+  const [message, setMessage]           = useState('')
+  const [errors, setErrors]             = useState<Errors>({})
+  const [countryCode, setCountryCode]   = useState('+94')
+  const [country, setCountry]           = useState('')
 
   useEffect(() => {
     const handler = (e: Event) => {
-      const bagName = (e as CustomEvent).detail?.name
-      if (bagName) {
-        setEnquiryBag(bagName)
-        setMessage(`Hi, I'd like to enquire about the ${bagName}.`)
+      const items: string[] = (e as CustomEvent).detail?.items ?? []
+      setEnquiryItems(items)
+      if (items.length > 0) {
+        setMessage(`Hi, I'd like to enquire about: ${items.join(', ')}.`)
       }
     }
-    window.addEventListener('enquire-bag', handler)
-    return () => window.removeEventListener('enquire-bag', handler)
+    window.addEventListener('enquiry-review', handler)
+    return () => window.removeEventListener('enquiry-review', handler)
   }, [])
 
   function validate(data: FormData): Errors {
@@ -67,19 +67,24 @@ export default function Contact() {
     const mobile = formData.get('mobile')?.toString().trim() ?? ''
     const fullPhone = `${countryCode} ${mobile}`
 
+    const productValue = enquiryItems.length > 0
+      ? enquiryItems.join(', ')
+      : formData.get('product')?.toString().trim() || 'Not specified'
+
     const body = new URLSearchParams({
       [ENTRY.name]:    formData.get('name')?.toString().trim() ?? '',
       [ENTRY.email]:   formData.get('email')?.toString().trim() ?? '',
       [ENTRY.phone]:   fullPhone,
       [ENTRY.country]: country,
-      [ENTRY.product]: enquiryBag || formData.get('product')?.toString().trim() || 'Not specified',
+      [ENTRY.product]: productValue,
       [ENTRY.message]: formData.get('message')?.toString().trim() ?? '',
     })
 
     await fetch(FORM_ACTION, { method: 'POST', mode: 'no-cors', body })
 
+    window.dispatchEvent(new Event('clear-enquiry'))
     setSubmitted(true)
-    setEnquiryBag('')
+    setEnquiryItems([])
     setMessage('')
   }
 
@@ -130,22 +135,35 @@ export default function Contact() {
         ) : (
           <form onSubmit={handleSubmit} className="max-w-xl mx-auto space-y-6">
 
-            {/* Bag indicator */}
-            {enquiryBag && (
-              <div className="flex items-center justify-between bg-burgundy/10 border border-burgundy/20 px-4 py-3">
-                <p
-                  className="text-[11px] tracking-[0.15em] uppercase text-burgundy"
-                  style={{ fontFamily: 'var(--font-montserrat)', fontWeight: 700 }}
-                >
-                  Enquiring about: {enquiryBag}
-                </p>
-                <button
-                  type="button"
-                  onClick={() => { setEnquiryBag(''); setMessage('') }}
-                  className="text-burgundy/60 hover:text-burgundy text-sm ml-4"
-                >
-                  ✕
-                </button>
+            {/* Basket indicator */}
+            {enquiryItems.length > 0 && (
+              <div className="bg-burgundy/10 border border-burgundy/20 px-4 py-3">
+                <div className="flex items-center justify-between mb-2">
+                  <p
+                    className="text-[11px] tracking-[0.15em] uppercase text-burgundy"
+                    style={{ fontFamily: 'var(--font-montserrat)', fontWeight: 700 }}
+                  >
+                    Your enquiry
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => { setEnquiryItems([]); setMessage('') }}
+                    className="text-burgundy/60 hover:text-burgundy text-sm ml-4"
+                  >
+                    Clear
+                  </button>
+                </div>
+                <ul className="space-y-1">
+                  {enquiryItems.map(item => (
+                    <li
+                      key={item}
+                      className="text-[12px] text-burgundy/80"
+                      style={{ fontFamily: 'var(--font-montserrat)' }}
+                    >
+                      · {item}
+                    </li>
+                  ))}
+                </ul>
               </div>
             )}
 
@@ -259,8 +277,8 @@ export default function Contact() {
               />
             </div>
 
-            {/* Product — only shown if not pre-filled by enquiryBag */}
-            {!enquiryBag && (
+            {/* Product dropdown — hidden when basket items are pre-filled */}
+            {enquiryItems.length === 0 && (
               <div>
                 <label
                   className="block text-[10px] tracking-[0.2em] uppercase text-stone mb-2"
