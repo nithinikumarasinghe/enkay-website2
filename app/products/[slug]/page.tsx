@@ -29,15 +29,18 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
   return (
     <div className="min-h-screen bg-cream">
 
-      {/* Back nav */}
+      {/* Breadcrumb */}
       <div className="max-w-7xl mx-auto px-6 lg:px-12 pt-8 pb-0">
-        <Link
-          href="/#shop"
-          className="inline-flex items-center gap-2 text-[10px] tracking-[0.2em] uppercase text-stone hover:text-onyx transition-colors"
-          style={{ fontFamily: 'var(--font-montserrat)', fontWeight: 700 }}
+        <p
+          className="text-[10px] tracking-[0.2em] uppercase text-stone"
+          style={{ fontFamily: 'var(--font-montserrat)' }}
         >
-          ← Back to Shop
-        </Link>
+          <Link href="/" className="hover:text-onyx transition-colors">Home</Link>
+          <span className="mx-2 text-taupe">/</span>
+          <Link href="/#shop" className="hover:text-onyx transition-colors">Shop</Link>
+          <span className="mx-2 text-taupe">/</span>
+          <span className="text-onyx">{product.name}</span>
+        </p>
       </div>
 
       {/* Main product layout */}
