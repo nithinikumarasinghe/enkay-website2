@@ -28,6 +28,15 @@ export default function Contact() {
   const [country, setCountry]           = useState('')
 
   useEffect(() => {
+    // Pre-fill from localStorage on mount (e.g. when navigating from a product page)
+    try {
+      const stored: string[] = JSON.parse(localStorage.getItem('enkay-enquiry') ?? '[]')
+      if (stored.length > 0) {
+        setEnquiryItems(stored)
+        setMessage(`Hi, I'd like to enquire about: ${stored.join(', ')}.`)
+      }
+    } catch { /* ignore */ }
+
     const handler = (e: Event) => {
       const items: string[] = (e as CustomEvent).detail?.items ?? []
       setEnquiryItems(items)

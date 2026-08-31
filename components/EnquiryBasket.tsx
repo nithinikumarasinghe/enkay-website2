@@ -55,10 +55,13 @@ export default function EnquiryBasket() {
   }
 
   function review() {
-    window.dispatchEvent(new CustomEvent('enquiry-review', { detail: { items } }))
-    setTimeout(() => {
-      document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })
-    }, 100)
+    const contactEl = document.getElementById('contact')
+    if (contactEl) {
+      window.dispatchEvent(new CustomEvent('enquiry-review', { detail: { items } }))
+      setTimeout(() => contactEl.scrollIntoView({ behavior: 'smooth' }), 100)
+    } else {
+      window.location.href = '/#contact'
+    }
   }
 
   if (items.length === 0 && !flash) return null
