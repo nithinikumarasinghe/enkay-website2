@@ -1,6 +1,17 @@
 'use client'
 import { useState, useEffect } from 'react'
 
+const FORM_ACTION = 'https://docs.google.com/forms/d/e/1FAIpQLSeM2jKhLZLdqjudqICDW88oYcx1wuvQLfiKPpZlTMVcGGZLaw/formResponse'
+
+const ENTRY = {
+  name:    'entry.698392894',
+  email:   'entry.1096267375',
+  phone:   'entry.1559886451',
+  country: 'entry.1191480108',
+  product: 'entry.337133734',
+  message: 'entry.1545237605',
+}
+
 type Errors = {
   name?: string
   email?: string
@@ -9,10 +20,12 @@ type Errors = {
 }
 
 export default function Contact() {
-  const [submitted, setSubmitted] = useState(false)
-  const [enquiryBag, setEnquiryBag] = useState('')
-  const [message, setMessage] = useState('')
-  const [errors, setErrors] = useState<Errors>({})
+  const [submitted, setSubmitted]     = useState(false)
+  const [enquiryBag, setEnquiryBag]   = useState('')
+  const [message, setMessage]         = useState('')
+  const [errors, setErrors]           = useState<Errors>({})
+  const [countryCode, setCountryCode] = useState('+94')
+  const [country, setCountry]         = useState('')
 
   useEffect(() => {
     const handler = (e: Event) => {
@@ -49,13 +62,21 @@ export default function Contact() {
       setErrors(errs)
       return
     }
-
     setErrors({})
-    await fetch('/__forms.html', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: new URLSearchParams(formData as unknown as Record<string, string>).toString(),
+
+    const mobile = formData.get('mobile')?.toString().trim() ?? ''
+    const fullPhone = `${countryCode} ${mobile}`
+
+    const body = new URLSearchParams({
+      [ENTRY.name]:    formData.get('name')?.toString().trim() ?? '',
+      [ENTRY.email]:   formData.get('email')?.toString().trim() ?? '',
+      [ENTRY.phone]:   fullPhone,
+      [ENTRY.country]: country,
+      [ENTRY.product]: enquiryBag || formData.get('product')?.toString().trim() || 'Not specified',
+      [ENTRY.message]: formData.get('message')?.toString().trim() ?? '',
     })
+
+    await fetch(FORM_ACTION, { method: 'POST', mode: 'no-cors', body })
 
     setSubmitted(true)
     setEnquiryBag('')
@@ -107,14 +128,7 @@ export default function Contact() {
             </p>
           </div>
         ) : (
-          <form
-            name="contact"
-            method="POST"
-            data-netlify="true"
-            onSubmit={handleSubmit}
-            className="max-w-xl mx-auto space-y-6"
-          >
-            <input type="hidden" name="form-name" value="contact" />
+          <form onSubmit={handleSubmit} className="max-w-xl mx-auto space-y-6">
 
             {/* Bag indicator */}
             {enquiryBag && (
@@ -135,6 +149,7 @@ export default function Contact() {
               </div>
             )}
 
+            {/* Name + Email */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <div>
                 <label
@@ -180,17 +195,18 @@ export default function Contact() {
               </div>
             </div>
 
+            {/* WhatsApp Number */}
             <div>
               <label
                 className="block text-[10px] tracking-[0.2em] uppercase text-stone mb-2"
                 style={{ fontFamily: 'var(--font-montserrat)', fontWeight: 700 }}
               >
-                Mobile Number
+                WhatsApp Number
               </label>
               <div className="flex gap-3">
                 <select
-                  name="country_code"
-                  defaultValue="+94"
+                  value={countryCode}
+                  onChange={(e) => setCountryCode(e.target.value)}
                   className="border-b border-taupe bg-transparent py-3 text-[13px] text-onyx outline-none focus:border-burgundy transition-colors w-28"
                   style={{ fontFamily: 'var(--font-montserrat)' }}
                 >
@@ -204,11 +220,14 @@ export default function Contact() {
                   <option value="+60">🇲🇾 +60</option>
                   <option value="+33">🇫🇷 +33</option>
                   <option value="+49">🇩🇪 +49</option>
+                  <option value="+81">🇯🇵 +81</option>
+                  <option value="+82">🇰🇷 +82</option>
+                  <option value="+66">🇹🇭 +66</option>
                 </select>
                 <input
                   type="tel"
                   name="mobile"
-                  placeholder="Your mobile number"
+                  placeholder="Your number"
                   onChange={() => setErrors((p) => ({ ...p, mobile: undefined }))}
                   className={`flex-1 ${inputClass('mobile')}`}
                   style={{ fontFamily: 'var(--font-montserrat)' }}
@@ -221,6 +240,52 @@ export default function Contact() {
               )}
             </div>
 
+            {/* Country */}
+            <div>
+              <label
+                className="block text-[10px] tracking-[0.2em] uppercase text-stone mb-2"
+                style={{ fontFamily: 'var(--font-montserrat)', fontWeight: 700 }}
+              >
+                Country
+              </label>
+              <input
+                type="text"
+                name="country"
+                placeholder="Where are you based?"
+                value={country}
+                onChange={(e) => setCountry(e.target.value)}
+                className="w-full border-b border-taupe bg-transparent py-3 text-[13px] text-onyx placeholder:text-stone/70 outline-none focus:border-burgundy transition-colors"
+                style={{ fontFamily: 'var(--font-montserrat)' }}
+              />
+            </div>
+
+            {/* Product — only shown if not pre-filled by enquiryBag */}
+            {!enquiryBag && (
+              <div>
+                <label
+                  className="block text-[10px] tracking-[0.2em] uppercase text-stone mb-2"
+                  style={{ fontFamily: 'var(--font-montserrat)', fontWeight: 700 }}
+                >
+                  Product You&apos;re Interested In
+                </label>
+                <select
+                  name="product"
+                  className="w-full border-b border-taupe bg-transparent py-3 text-[13px] text-onyx outline-none focus:border-burgundy transition-colors"
+                  style={{ fontFamily: 'var(--font-montserrat)' }}
+                >
+                  <option value="">Select a piece (optional)</option>
+                  <option value="Aurelia Pearl Midi">Aurelia Pearl Midi</option>
+                  <option value="Celeste Clutch">Celeste Clutch</option>
+                  <option value="Garnet Orb">Garnet Orb</option>
+                  <option value="Sparkle Mini — Ember">Sparkle Mini — Ember</option>
+                  <option value="Vellure Box Bag">Vellure Box Bag</option>
+                  <option value="Custom / Made to order">Custom / Made to order</option>
+                  <option value="Just browsing">Just browsing</option>
+                </select>
+              </div>
+            )}
+
+            {/* Message */}
             <div>
               <label
                 className="block text-[10px] tracking-[0.2em] uppercase text-stone mb-2"
