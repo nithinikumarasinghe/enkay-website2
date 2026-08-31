@@ -45,9 +45,12 @@ type Product = typeof products[0]
 export default function FeaturedProducts() {
   const [selected, setSelected] = useState<Product | null>(null)
 
-  function handleAddToEnquiry(productName: string) {
-    window.dispatchEvent(new CustomEvent('add-to-enquiry', { detail: { name: productName } }))
+  function handleEnquire(productName: string) {
     setSelected(null)
+    window.dispatchEvent(new CustomEvent('enquire-bag', { detail: { name: productName } }))
+    setTimeout(() => {
+      document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })
+    }, 150)
   }
 
   return (
@@ -180,11 +183,11 @@ export default function FeaturedProducts() {
               </span>
 
               <button
-                onClick={() => handleAddToEnquiry(selected.name)}
+                onClick={() => handleEnquire(selected.name)}
                 className="w-full bg-burgundy text-white text-[11px] tracking-[0.2em] uppercase px-10 py-4 hover:bg-burgundy/90 transition-colors"
                 style={{ fontFamily: 'var(--font-montserrat)', fontWeight: 700 }}
               >
-                Add to Enquiry
+                Enquire About This Bag
               </button>
             </div>
           </div>
